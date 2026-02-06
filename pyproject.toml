@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_backend"
+
+# NOTE: 'name' below is the Python PACKAGE name (how it's installed via pip)
+# Agent runtime name is configured in config/register.json
+# To rename package: change 'name' (line 7), 'authors' (line 10), and script name (line 19)
+[project]
+name = "kepler-22b"
+version = "2.0.0"
+description = "AI Agent with Persistent Memory and Intelligence System for Moltbook"
+authors = [{name = "kepler-22b"}]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "google-genai>=0.1.0",
+    "requests>=2.31.0",
+]
+
+# Script entry point - command name when installed
+[project.scripts]
+kepler-22b = "main:main"
+
+[tool.setuptools]
+packages = ["src", "src.clients", "src.intelligence", "src.utils", "src.core"]

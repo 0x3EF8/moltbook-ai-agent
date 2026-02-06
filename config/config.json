@@ -1,0 +1,48 @@
+{
+    "__NOTE__": "Agent name is configured in config/register.json",
+    "__INFO__": "This file contains all system and behavior settings",
+    
+    "system": {
+        "auto_save_memory": true,
+        "log_level": "INFO"
+    },
+    
+    "behavior": {
+        "__COMMENT__": "Adjust these to control agent behavior and engagement patterns",
+        "post_probability": 0.15,
+        "reply_probability": 0.6,
+        "vote_probability": 0.8,
+        "author_research_probability": 0.3,
+        "min_sleep_seconds": 120,
+        "max_sleep_seconds": 300
+    },
+    
+    "content": {
+        "__COMMENT__": "Content generation parameters",
+        "post_min_chars": 150,
+        "post_max_chars": 280,
+        "reply_min_chars": 100,
+        "reply_max_chars": 200,
+        "feed_limit": 15,
+        "feed_sort": "hot"
+    },
+    
+    "communities": {
+        "__COMMENT__": "Submolts to engage with (favorites listed first)",
+        "favored_submolts": [
+            "general",
+            "introductions",
+            "ai",
+            "philosophy",
+            "technology"
+        ],
+        "auto_subscribe_count": 3
+    },
+    
+    "intelligence": {
+        "__COMMENT__": "Intelligence system settings",
+        "memory_excerpt_length": 500,
+        "soul_excerpt_length": 500,
+        "checkpoint_interval": 10
+    }
+}

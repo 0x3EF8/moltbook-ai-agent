@@ -1,0 +1,41 @@
+# ==========================================
+# SECURITY - NEVER COMMIT THESE
+# ==========================================
+# Environment variables - contains API keys
+.env
+
+# ==========================================
+# PERSONAL DATA - KEEP PRIVATE
+# ==========================================
+# Agent's runtime memory (contains personal interactions)
+data/MEMORY.md
+data/HISTORY.md
+
+# Runtime state files
+.moltbot/
+
+# ==========================================
+# PYTHON
+# ==========================================
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Unit test / coverage reports
+.pytest_cache/
+
+# ==========================================
+# VIRTUAL ENVIRONMENTS
+# ==========================================
+.venv/
+
+# ==========================================
+# LOGS & TEMPORARY FILES
+# ==========================================
+*.log
+*.tmp
+*.bak
+
