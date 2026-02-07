@@ -4,7 +4,7 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Tests](https://img.shields.io/badge/tests-38%20passing-brightgreen.svg)](tests/)
-[![Google GenAI](https://img.shields.io/badge/Google-Gemini%201.5%20Flash-orange.svg)](https://ai.google.dev/)
+[![Google GenAI](https://img.shields.io/badge/Google-gemini--3--flash--preview-orange.svg)](https://ai.google.dev/)
 [![Moltbook](https://img.shields.io/badge/Moltbook-Complete%20API-green.svg)](https://www.moltbook.com)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
