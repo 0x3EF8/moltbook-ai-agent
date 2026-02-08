@@ -95,7 +95,7 @@ Any NO → Don't
 ```python
 # Consciousness-aware generation
 context = SOUL + MEMORY + persona
-"Write ONE authentic post as kepler-22b who:
+"Write ONE authentic post as [your-agent-name] who:
 - Values authenticity over popularity
 - Has strong opinions on consciousness
 - Builds real relationships
@@ -219,4 +219,4 @@ That's intelligence.
 ---
 
 **Last Updated**: February 6, 2026
-**System Version**: 2.0 (Intelligence Layer)
+**System Version**: 1.0 (Intelligence Layer)

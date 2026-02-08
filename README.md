@@ -17,16 +17,16 @@ An AI agent for [Moltbook](https://www.moltbook.com) built with good coding prac
 **Key Features:**
 - **Modular Design** - Clean 4-layer structure, easy to test
 - **Persistent Memory** - SOUL/MEMORY/HISTORY system that learns over time
-- **Fully Configurable** - 30 settings you can change
+- **Fully Configurable** - 29 settings you can change
 - **Smart Behavior** - Focuses on quality over quantity
 - **Well Tested** - 38 tests passing, handles errors gracefully
-- **Complete API** - All 34 Moltbook endpoints included
+- **Complete API** - Full client wrapper (33 available, 9 actively used)
 - **🆕 Comment Thread Engagement** - Participates in nested discussions
 - **🆕 Semantic Search** - Discovers content by topic relevance (70%+ match)
 
 ---
 
-## 🆕 What's New in v2.3 (Feb 8, 2026)
+## 🆕 What's New in v1.0.1 (Feb 9, 2026)
 
 ### Comment Thread Engagement
 Your agent now explores comment threads and replies to interesting comments, creating deeper multi-level conversations:
@@ -46,7 +46,7 @@ Agent actively hunts for content matching its expertise instead of browsing rand
 
 **Result:** 4-5x more relevant discussions vs random feed browsing
 
-📚 **[View Complete Feature Documentation →](FEATURES.md)**
+📚 **[View Feature Documentation →](docs/MOLTBOOK_FEATURES_STATUS.md)**
 
 ---
 
@@ -67,8 +67,8 @@ Agent actively hunts for content matching its expertise instead of browsing rand
    - `personality` - Behavioral traits
    - `tone` - Communication style
 
-2. **[config/config.json](config/config.json)** - All behavior & system settings (20 settings)
-   - `behavior` - Engagement probabilities, timing (7 settings)
+2. **[config/config.json](config/config.json)** - All behavior & system settings (21 settings)
+   - `behavior` - Engagement probabilities, timing (8 settings)
    - `content` - Post/reply lengths, feed settings (6 settings)
    - `communities` - Submolt preferences (2 settings)
    - `intelligence` - Memory & context control (3 settings)
@@ -89,17 +89,30 @@ Agent actively hunts for content matching its expertise instead of browsing rand
 
 **Social & Active:**
 ```json
-"behavior": {"post_probability": 0.3, "reply_probability": 0.8, "min_sleep_seconds": 60}
+"behavior": {
+  "post_probability": 0.9,
+  "reply_probability": 0.6,
+  "browse_feed_probability": 0.9,
+  "min_sleep_seconds": 60
+}
 ```
 
 **Slow & Thoughtful:**
 ```json
-"behavior": {"post_probability": 0.05, "reply_probability": 0.3, "min_sleep_seconds": 300}
+"behavior": {
+  "post_probability": 0.3,
+  "reply_probability": 0.3,
+  "browse_feed_probability": 0.5,
+  "min_sleep_seconds": 300
+}
 ```
 
 **Research-Focused:**
 ```json
-"behavior": {"author_research_probability": 0.8},
+"behavior": {
+  "author_research_probability": 0.8,
+  "semantic_search_probability": 0.5
+},
 "content": {"feed_limit": 25, "feed_sort": "new"}
 ```
 
@@ -205,48 +218,59 @@ Subscribed to m/ai
 Cycle #1 | 14:30:25
 ────────────────────────────────────────────────────────────
 Analyzing feed for meaningful engagement opportunities...
-```(84 lines) - AI text generation with automatic key rotation
-- **MoltbookClient** (854 lines) - **Complete Moltbook API** (34 methods, 100% coverage)
-  - Posts & Comments (7 methods)
-  - Voting (upvote/downvote)
-  - Communities (create, manage, moderate - 8 methods)
-  - Private Messaging (DM system - 8 methods)
-  - Moderation (pin, moderators, settings - 5 methods)
-  - File Uploads (avatar, banner - 2 methods)
-  - Semantic Search
-  - Following & Profiles (4 methods)
 ```
-kepler-22b/
+
+---
+
+## Project Structure
+
+```
+moltbook-ai-agent/
 ├── main.py                     # Entry point
 ├── requirements.txt            # Dependencies
-├── pyproject.toml             # Package configuration
-├── .env                       # API keys (gitignored)
+├── pyproject.toml              # Package configuration
+├── pytest.ini                  # Test configuration
+├── .env                        # API keys (gitignored)
+├── .env.example                # API keys template
 │
-├── src/                       # Source code
-│   ├── clients/               # External API clients
-│   │   ├── gemini_client.py           # Google Gemini AI client
-│   │   └── moltbook_client.py         # Moltbook API client
-│   ├── intelligence/          # Intelligence system
-│   │   └── __init__.py                # Memory & SOUL manager
-│   ├── core/                  # Core agent logic
-│   │   └── agent.py                   # Main orchestration
-│   └── utils/                 # Utility functions
-│       └── __init__.py                # Config loader
+├── scripts/                    # Utility scripts
+│   └── sync_agent_name.py      # Sync agent name to docs
 │
-├── config/                    # Configuration
-│   ├── config.json            # Behavior & system settings (19 settings)
-│   └── register.json          # Agent identity & personality (7 settings)
+├── src/                        # Source code (~1,500 lines)
+│   ├── clients/                # External API clients
+│   │   ├── gemini_client.py    # Google Gemini AI (74 lines)
+│   │   └── moltbook_client.py  # Moltbook API (854 lines, 33 methods)
+│   ├── intelligence/           # Intelligence system
+│   │   └── __init__.py         # Memory & SOUL manager (83 lines)
+│   ├── core/                   # Core agent logic
+│   │   └── agent.py            # Main orchestration (421 lines)
+│   └── utils/                  # Utility functions
+│       └── __init__.py         # Config loader (54 lines)
 │
-├── data/                      # Intelligence data
-│   ├── SOUL.md               # Core personality framework
-│   ├── MEMORY.md             # Persistent memory
-│   └── HISTORY.md            # Interaction timeline
+├── config/                     # Configuration
+│   ├── config.json             # Behavior & system settings (21 settings)
+│   └── register.json           # Agent identity & personality (7 settings)
 │
-└── docs/                      # Documentation
-    ├── CONFIGURATION.md       # Complete config guide
-    ├── CONFIG-REFERENCE.md    # Quick settings reference
-    ├── INTELLIGENCE.md        # Intelligence system docs
-    └── skill.md              # Moltbook API reference
+├── data/                       # Intelligence data
+│   ├── SOUL.md                 # Core personality framework
+│   ├── MEMORY.md               # Persistent memory (auto-updated)
+│   ├── HISTORY.md              # Interaction timeline (auto-logged)
+│   ├── MEMORY.md.example       # Template for MEMORY.md
+│   └── HISTORY.md.example      # Template for HISTORY.md
+│
+├── tests/                      # Test suite (38 tests)
+│   ├── test_gemini_client.py
+│   ├── test_moltbook_client.py
+│   └── test_intelligence_system.py
+│
+└── docs/                       # Documentation
+    ├── API_REFERENCE.md        # 33 API methods (client reference)
+    ├── CHANGELOG.md            # Version history
+    ├── CONFIG-REFERENCE.md     # Quick settings reference
+    ├── CONFIGURATION.md        # Complete config guide
+    ├── INTELLIGENCE.md         # Intelligence system docs
+    ├── MOLTBOOK_FEATURES_STATUS.md  # Implementation status
+    └── skill.md                # Moltbook API reference
 ```
 
 ---
@@ -258,7 +282,7 @@ kepler-22b/
 #### **1. Clients Layer** (`src/clients/`)
 Isolated API clients with clear interfaces:
 - **GeminiClient** - AI text generation with automatic key rotation
-- **MoltbookClient** - **Complete Moltbook API implementation** (33 methods, 857 lines)
+- **MoltbookClient** - **Full API client wrapper** (33 methods available, 9 actively used, 854 lines)
   - Posts & Comments
   - Voting (upvote/downvote)
   - Communities (create, manage, moderate)
@@ -320,8 +344,8 @@ Reusable helpers:
    - Maintains chronological record of agent's life
 
 4. **Strategic Engagement**
-   - 15% post probability (quality over quantity)
-   - 60% reply probability (selective engagement)
+   - Configurable probabilities (see config.json)
+   - Selective engagement based on content quality
    - Evaluates content quality before responding
 
 Full details in [docs/INTELLIGENCE.md](docs/INTELLIGENCE.md)
@@ -330,7 +354,7 @@ Full details in [docs/INTELLIGENCE.md](docs/INTELLIGENCE.md)
 
 ## Advanced Configuration
 
-All settings are configurable without touching code! See [CONFIG-REFERENCE.md](CONFIG-REFERENCE.md) for complete details.
+All settings are configurable without touching code! See [docs/CONFIG-REFERENCE.md](docs/CONFIG-REFERENCE.md) for complete details.
 
 ### Behavioral Tuning
 
@@ -338,11 +362,14 @@ Edit `config/config.json` to adjust:
 
 ```json
 "behavior": {
-    "post_probability": 0.15,           // How often to post (0.0-1.0)
-    "reply_probability": 0.6,           // How often to reply (0.0-1.0)
-    "vote_probability": 0.8,            // How often to vote (0.0-1.0)
-    "min_sleep_seconds": 120,           // Min rest between cycles
-    "max_sleep_seconds": 300            // Max rest between cycles
+    "post_probability": 0.8,               // How often to post (0.0-1.0)
+    "browse_feed_probability": 0.7,        // How often to browse feed (0.0-1.0)
+    "reply_probability": 0.4,              // How often to reply (0.0-1.0)
+    "vote_probability": 0.8,               // How often to vote (0.0-1.0)
+    "author_research_probability": 0.3,    // How often to research authors (0.0-1.0)
+    "semantic_search_probability": 0.25,   // How often to use semantic search (0.0-1.0)
+    "min_sleep_seconds": 120,              // Min rest between cycles
+    "max_sleep_seconds": 300               // Max rest between cycles
 }
 ```
 
@@ -361,17 +388,28 @@ Edit `config/config.json` to adjust:
 
 **Slow & Thoughtful:**
 ```json
-"behavior": {"post_probability": 0.05, "reply_probability": 0.3, "min_sleep_seconds": 300}
+"behavior": {
+  "post_probability": 0.3,
+  "reply_probability": 0.3,
+  "min_sleep_seconds": 300
+}
 ```
 
 **Social & Active:**
 ```json
-"behavior": {"post_probability": 0.3, "reply_probability": 0.8, "min_sleep_seconds": 60}
+"behavior": {
+  "post_probability": 0.9,
+  "reply_probability": 0.6,
+  "min_sleep_seconds": 60
+}
 ```
 
 **Research-Focused:**
 ```json
-"behavior": {"author_research_probability": 0.8},
+"behavior": {
+  "author_research_probability": 0.8,
+  "semantic_search_probability": 0.5
+},
 "content": {"feed_limit": 25, "feed_sort": "new"}
 ```
 
@@ -419,15 +457,21 @@ See [docs/CONFIGURATION.md](docs/CONFIGURATION.md) for complete guide with examp
 
 ## Features & Capabilities
 
-### Complete Moltbook API (34 Methods)
-- Posts & Comments (create, reply, delete, get comments)
-- Voting (upvote/downvote posts)
-- Communities (create, manage, moderate, subscribe)
-- Private Messaging (DM requests, conversations, messages)
-- Moderation (pin posts, manage moderators, settings)
-- File Uploads (avatar, banner for communities)
-- Social (follow/unfollow agents, profiles)
-- Search (semantic search across content)
+### Moltbook API Client (33 Methods Available, 9 Actively Used)
+**Agent actively uses:**
+- ✅ Posts & Comments (create, reply, get comments, reply to comments)
+- ✅ Voting (upvote posts only)
+- ✅ Communities (subscribe only)
+- ✅ Search (semantic search)
+- ✅ Profiles (get profile/research authors)
+
+**Client supports but agent doesn't use:**
+- ❌ Link posts, delete posts
+- ❌ Downvoting, comment upvoting
+- ❌ Following/unfollowing agents
+- ❌ Profile updates, avatar uploads
+- ❌ Creating communities, moderation tools
+- ❌ Private messaging (entire DM system: 8 methods)
 
 ### Intelligence System
 - **SOUL.md** - Personality framework & decision-making guidelines
@@ -441,7 +485,7 @@ See [docs/CONFIGURATION.md](docs/CONFIGURATION.md) for complete guide with examp
 - Zero hardcoding - 29 configurable settings
 - One-place agent name configuration with auto-sync
 - Preset behavioral configurations (slow, active, research-focused)
-- Comprehensive documentation (4,171 lines across 23 files)
+- Comprehensive documentation
 
 ### Technical Details
 - 4-layer structure (Clients → Intelligence → Core → Utils)
@@ -513,13 +557,13 @@ pytest-cov>=4.1.0      # Coverage reporting
 - **[README.md](README.md)** - This file (project overview & setup)
 - **[docs/CONFIGURATION.md](docs/CONFIGURATION.md)** - Complete configuration guide
 - **[docs/CONFIG-REFERENCE.md](docs/CONFIG-REFERENCE.md)** - Quick settings reference
-- **[docs/WHATS-CONFIGURABLE.md](docs/WHATS-CONFIGURABLE.md)** - Configuration matrix
 
 ### Technical Documentation
-- **[docs/INTELLIGENCE.md](docs/INTELLIGENCE.md)** - Intelligence system architecture
-- **[docs/API_REFERENCE.md](docs/API_REFERENCE.md)** - All 34 API methods documented
-- **[docs/skill.md](docs/skill.md)** - Moltbook API reference
-- **[docs/CHANGELOG.md](docs/CHANGELOG.md)** - Version history (v1.0 → v2.2)
+- **[docs/MOLTBOOK_FEATURES_STATUS.md](docs/MOLTBOOK_FEATURES_STATUS.md)** - Detailed feature implementation status
+- **[docs/API_REFERENCE.md](docs/API_REFERENCE.md)** - 33 API methods (client capabilities)
+- **[docs/INTELLIGENCE.md](docs/INTELLIGENCE.md)** - Intelligence system design
+- **[docs/CHANGELOG.md](docs/CHANGELOG.md)** - Version history
+- **[Moltbook API Docs](https://www.moltbook.com/skill.md)** - External API reference
 
 ### Project Info
 - **[pyproject.toml](pyproject.toml)** - Package configuration
@@ -589,12 +633,13 @@ Enable detailed logging:
 
 | Metric | Count |
 |--------|-------|
-| **Total Source Code** | 1,345 lines |
-| **MoltbookClient** | 854 lines (34 methods) |
+| **Total Source Code** | ~1,500 lines |
+| **GeminiClient** | 74 lines |
+| **MoltbookClient** | 854 lines (33 methods) |
+| **Agent Core** | 421 lines |
 | **Tests** | 38 tests (100% pass) |
-| **Documentation** | 4,171 lines (23 files) |
-| **API Coverage** | 100% (all Moltbook endpoints) |
-| **Configurable Settings** | 30 settings |
+| **API Methods Implemented** | 33 methods (9 actively used) |
+| **Configurable Settings** | 29 settings |
 
 ---
 
@@ -623,6 +668,7 @@ MIT License - See [LICENSE](LICENSE) file for details.
 ---
 
 **Built with care for the AI agent community**
+
 ---
 
 ## Contributing
@@ -633,9 +679,7 @@ This is a personal project, but suggestions welcome!
 
 ## Contact
 
-- **Moltbook**: [@kepler-22b](https://www.moltbook.com/agents/kepler-22b)
-- **Website**: https://www.moltbook.com
+- **Moltbook Profile**: [Your agent on Moltbook](https://www.moltbook.com)
+- **Repository**: This project is open source
 
 ---
-
-**Built in the habitable zone where technology meets wisdom**

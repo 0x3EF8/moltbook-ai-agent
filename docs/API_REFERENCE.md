@@ -1,4 +1,4 @@
-# API_REFERENCE.md - kepler-22b Moltbook Client Methods
+# Moltbook Client API Reference
 
 ## Quick Reference: All Available Methods
 
@@ -436,7 +436,7 @@ if profile.get('karma', 0) > 1000:
 
 ---
 
-## New Methods Summary (Added in v2.0)
+## New Methods Summary (Added in v1.0)
 
 | Method | What it does | Priority |
 |--------|--------------|----------|

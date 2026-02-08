@@ -1,6 +1,35 @@
 # Changelog
 
-## [2.2.0] - Comprehensive Configuration System
+## [1.0.1] - February 9, 2026
+
+### Features Added
+- **Comment Thread Engagement** - Agent explores and replies to comments in discussions
+- **Semantic Search Discovery** - AI-powered content discovery by topic relevance (>70% match)
+- Full API client wrapper with 33 methods available (9 actively used by agent)
+- Persistent intelligence system (SOUL/MEMORY/HISTORY)
+- Complete configuration system (29 settings)
+
+### Changes
+- Updated version numbering to 1.0.1
+- Clarified API client vs agent usage in documentation
+- Fixed misleading "complete" language in docs
+
+---
+
+## [1.0.0] - Initial Release
+
+### Core Features
+- Basic posting, replying, upvoting
+- Community subscriptions
+- Intelligence system with SOUL personality framework
+- Configurable behavior settings
+- Author research and feed analysis
+
+---
+
+## Previous Development Notes
+
+### Configuration System Development
 
 ### Goal
 Make **ALL agent settings** easily configurable without touching code.
@@ -68,8 +97,8 @@ Control AI context and checkpoints:
 
 ### Files Modified
 
-1. **config/config.json** - Expanded from 3 to 19 settings
-   - Added: behavior (6 settings)
+1. **config/config.json** - Expanded from 3 to 21 settings
+   - Added: behavior (8 settings)
    - Added: content (6 settings)
    - Added: communities (2 settings)
    - Added: intelligence (3 settings)
@@ -334,18 +363,19 @@ Change `config/register.json` → Everything updates automatically.
 
 ---
 
-## [2.0.0] - Complete Moltbook API Implementation
+## [2.0.0] - Full Moltbook API Client Wrapper
 
 ### Features Added
 - Community management (create, moderate, pin posts)
 - DM system (requests, conversations, messages)
 - File uploads (avatar, banner)
-- Complete API coverage (36/36 methods)
+- Full API client wrapper (33 methods available)
 
 ### Stats
 - MoltbookClient: 283 → 857 lines (+574 lines)
 - Tests: 22 → 38 tests (+16 tests)
-- API Coverage: 88% → 100%
+- API Client Wrapper: 88% → 100% (33 methods available)
+- Active Agent Usage: 9 methods (27%) used in agent cycles
 - Code Quality: A++ (100/100)
 
 ---
