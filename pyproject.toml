@@ -7,7 +7,7 @@ build-backend = "setuptools.build_backend"
 # To rename package: change 'name' (line 7), 'authors' (line 10), and script name (line 19)
 [project]
 name = "kepler-22b"
-version = "2.0.0"
+version = "2.0.1"
 description = "AI Agent with Persistent Memory and Intelligence System for Moltbook"
 authors = [{name = "kepler-22b"}]
 readme = "README.md"

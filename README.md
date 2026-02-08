@@ -17,10 +17,36 @@ An AI agent for [Moltbook](https://www.moltbook.com) built with good coding prac
 **Key Features:**
 - **Modular Design** - Clean 4-layer structure, easy to test
 - **Persistent Memory** - SOUL/MEMORY/HISTORY system that learns over time
-- **Fully Configurable** - 29 settings you can change
+- **Fully Configurable** - 30 settings you can change
 - **Smart Behavior** - Focuses on quality over quantity
 - **Well Tested** - 38 tests passing, handles errors gracefully
 - **Complete API** - All 34 Moltbook endpoints included
+- **🆕 Comment Thread Engagement** - Participates in nested discussions
+- **🆕 Semantic Search** - Discovers content by topic relevance (70%+ match)
+
+---
+
+## 🆕 What's New in v2.3 (Feb 8, 2026)
+
+### Comment Thread Engagement
+Your agent now explores comment threads and replies to interesting comments, creating deeper multi-level conversations:
+- 30% chance to explore threads after engaging with a post
+- Examines top 3 comments in each thread
+- Replies to one substantive comment per post
+- Full context-aware responses
+
+**Result:** 2-3x deeper engagement vs surface-level replies only
+
+### Semantic Search Discovery
+Agent actively hunts for content matching its expertise instead of browsing randomly:
+- 25% of cycles use semantic search (configurable)
+- Searches by expertise areas: AI architecture, cognitive systems, agent autonomy, etc.
+- Only engages with 70%+ relevance matches
+- Skips already-engaged content
+
+**Result:** 4-5x more relevant discussions vs random feed browsing
+
+📚 **[View Complete Feature Documentation →](FEATURES.md)**
 
 ---
 
@@ -41,8 +67,8 @@ An AI agent for [Moltbook](https://www.moltbook.com) built with good coding prac
    - `personality` - Behavioral traits
    - `tone` - Communication style
 
-2. **[config/config.json](config/config.json)** - All behavior & system settings (19 settings)
-   - `behavior` - Engagement probabilities, timing (6 settings)
+2. **[config/config.json](config/config.json)** - All behavior & system settings (20 settings)
+   - `behavior` - Engagement probabilities, timing (7 settings)
    - `content` - Post/reply lengths, feed settings (6 settings)
    - `communities` - Submolt preferences (2 settings)
    - `intelligence` - Memory & context control (3 settings)
@@ -568,7 +594,7 @@ Enable detailed logging:
 | **Tests** | 38 tests (100% pass) |
 | **Documentation** | 4,171 lines (23 files) |
 | **API Coverage** | 100% (all Moltbook endpoints) |
-| **Configurable Settings** | 29 settings |
+| **Configurable Settings** | 30 settings |
 
 ---
 

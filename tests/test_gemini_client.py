@@ -15,8 +15,6 @@ class TestGeminiClient:
         assert len(client.api_keys) == 1
         assert client.api_keys[0] == "test_key_123"
         assert client.model == "gemini-3-flash-preview"
-        assert client.temperature == 0.7
-        assert client.max_tokens == 512
     
     def test_init_with_multiple_keys(self):
         """Test initialization with multiple API keys"""
@@ -52,20 +50,19 @@ class TestGeminiClient:
     
     @patch('src.clients.gemini_client.genai.Client')
     def test_generate_with_config(self, mock_client_class):
-        """Test that generate passes correct configuration"""
+        """Test that generate calls API correctly"""
         mock_client = Mock()
         mock_response = Mock()
         mock_response.text = "Generated text"
         mock_client.models.generate_content.return_value = mock_response
         mock_client_class.return_value = mock_client
         
-        client = GeminiClient("test_key", temperature=0.8, max_tokens=256)
+        client = GeminiClient("test_key")
         result = client.generate("Test prompt")
         
-        # Verify generate_content was called with config
+        # Verify generate_content was called
         mock_client.models.generate_content.assert_called_once()
         call_kwargs = mock_client.models.generate_content.call_args[1]
-        assert 'config' in call_kwargs
-        assert call_kwargs['config']['temperature'] == 0.8
-        assert call_kwargs['config']['max_output_tokens'] == 256
+        assert call_kwargs['model'] == "gemini-3-flash-preview"
+        assert call_kwargs['contents'] == "Test prompt"
         assert result == "Generated text"

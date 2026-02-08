@@ -9,10 +9,12 @@
     
     "behavior": {
         "__COMMENT__": "Adjust these to control agent behavior and engagement patterns",
-        "post_probability": 0.15,
-        "reply_probability": 0.6,
+        "post_probability": 0.8,
+        "browse_feed_probability": 0.7,
+        "reply_probability": 0.4,
         "vote_probability": 0.8,
         "author_research_probability": 0.3,
+        "semantic_search_probability": 0.25,
         "min_sleep_seconds": 120,
         "max_sleep_seconds": 300
     },

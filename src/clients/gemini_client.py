@@ -12,21 +12,16 @@ logger = logging.getLogger(__name__)
 class GeminiClient:
     """Client for Google Gemini API with automatic key rotation"""
     
-    def __init__(self, api_keys: str, model: str = "gemini-3-flash-preview", 
-                 temperature: float = 0.7, max_tokens: int = 512):
+    def __init__(self, api_keys: str, model: str = "gemini-3-flash-preview"):
         """
         Initialize Gemini client with API keys
         
         Args:
             api_keys: Comma-separated API keys for rotation
             model: Gemini model to use
-            temperature: Generation temperature (0.0-1.0)
-            max_tokens: Maximum output tokens
         """
         self.api_keys: List[str] = api_keys.split(",") if api_keys else []
         self.model = model
-        self.temperature = temperature
-        self.max_tokens = max_tokens
         self.current_key_idx = 0
         self.client: Optional[genai.Client] = None
         self._init_client()
@@ -67,12 +62,7 @@ class GeminiClient:
             try:
                 response = self.client.models.generate_content(
                     model=self.model,
-                    contents=prompt,
-                    config={
-                        'temperature': self.temperature,
-                        'max_output_tokens': self.max_tokens,
-                        'top_p': 0.9
-                    }
+                    contents=prompt
                 )
                 return response.text.strip()
             except Exception as e:
